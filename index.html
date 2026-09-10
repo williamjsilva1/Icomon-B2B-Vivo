@@ -1286,7 +1286,6 @@ const DEFAULT_SETTINGS = {
 // FIREBASE_ATIVO = false: login funciona 100% offline (usuários salvos no navegador).
 // FIREBASE_ATIVO = true : usa o Firebase Auth de verdade (preencha FIREBASE_CONFIG e
 // veja o README.md para os passos de configuração do projeto e dos provedores de login).
-const FIREBASE_ATIVO = true;
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyAslSshHu4Bg_sB8o8_QIeTTZX8qU1PF74",
   authDomain: "ativacao-icomon-vivo.firebaseapp.com",
@@ -1294,7 +1293,21 @@ const FIREBASE_CONFIG = {
   storageBucket: "ativacao-icomon-vivo.firebasestorage.app",
   messagingSenderId: "478952008306",
   appId: "1:478952008306:web:2f8952f674ef1cc6eeb0eb",
-  measurementId: "G-SBLBSBB51N"
+  measurementId: "G-SBLBSBB51N",
+};
+const FIREBASE_ATIVO = !!(FIREBASE_CONFIG.apiKey && !String(FIREBASE_CONFIG.apiKey).startsWith('COLE_AQUI'));
+
+let fbApp = null, fbAuth = null, fbDb = null, fbFunctions = null;
+if(FIREBASE_ATIVO){
+  try{
+    fbApp = firebase.initializeApp(FIREBASE_CONFIG);
+    fbAuth = firebase.auth();
+    fbDb = firebase.firestore();
+    fbFunctions = firebase.functions();
+    // Garante persistência entre recarregamentos de página (é o padrão do SDK,
+    // mas fixamos explicitamente para não depender de comportamento implícito).
+    fbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(e=>console.error('setPersistence', e));
+  }catch(e){ console.error('Falha ao iniciar Firebase:', e); }
 };
 
 const SESSION_KEY = "icomon_session_v1";
