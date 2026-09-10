@@ -1311,13 +1311,18 @@ const DEFAULT_SETTINGS = {
 // veja o README.md para os passos de configuração do projeto e dos provedores de login).
 const FIREBASE_ATIVO = false;
 const FIREBASE_CONFIG = {
-  apiKey: "SUA_API_KEY",
-  authDomain: "SEU_PROJETO.firebaseapp.com",
-  projectId: "SEU_PROJETO",
-  storageBucket: "SEU_PROJETO.appspot.com",
-  messagingSenderId: "SEU_SENDER_ID",
-  appId: "SEU_APP_ID"
+  apiKey: "AIzaSyAslSshHu4Bg_sB8o8_QIeTTZX8qU1PF74",
+  authDomain: "ativacao-icomon-vivo.firebaseapp.com",
+  projectId: "ativacao-icomon-vivo",
+  storageBucket: "ativacao-icomon-vivo.firebasestorage.app",
+  messagingSenderId: "478952008306",
+  appId: "1:478952008306:web:2f8952f674ef1cc6eeb0eb",
+  measurementId: "G-SBLBSBB51N"
 };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 const SESSION_KEY = "icomon_session_v1";
 
