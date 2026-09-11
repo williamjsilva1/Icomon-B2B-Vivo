@@ -1322,6 +1322,8 @@ const FIREBASE_CONFIG = {
 };
 
 const SESSION_KEY = "icomon_session_v1";
+const app = initializeApp(FIREBASE_CONFIG);
+const analytics = getAnalytics(app);
 
 // Conta padrão: sempre existe e sempre é Administrador, mesmo que alguém apague/edite
 // o cadastro dela em Usuários (mesma exceção de "bootstrap admin" usada no CredCerto/B2You).
